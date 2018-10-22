@@ -32,14 +32,26 @@ int Driver::getPointsPerRace() const
 {
     return this->pointsPerRace;
 }
+size_t Driver::getRank() const
+{
+    return this->rank;
+}
 Car Driver::getCar() const
 {
     return this->car;
+}
+double Driver::getTiming() const
+{
+    return this->timing;
 }
 void Driver::addPoints(int _points)
 {
     this->pointsPerRace += _points;
     this->overallPoints += _points;
+}
+void Driver::setTiming(double _timing)
+{
+    this->timing = _timing;
 }
 void Driver::copy(const Driver& other)
 {
@@ -48,6 +60,8 @@ void Driver::copy(const Driver& other)
     this->pointsPerRace = other.getPointsPerRace();
     this->overallPoints = other.getOverallPoints();
     this->setCar(other.getCar());
+    this->rank = other.getRank();
+    this->timing = other.getTiming();
 }
 void Driver::destroy()
 {
@@ -59,7 +73,8 @@ void Driver::print()
     cout<<"    - Name: "<<this->getName()<<endl;
     cout<<"    - Characteristics: "<<this->getCharacteristics()<<endl;
     cout<<"    - Points: "<<this->getOverallPoints()<<endl;
-    this->car.print();
+    cout<<"    - Timing: "<<this->getTiming()<<endl;
+    //this->car.print();
 }
 Driver::Driver()
 {
@@ -67,6 +82,8 @@ Driver::Driver()
     this->setCharacteristics("Default");
     this->overallPoints = 0;
     this->pointsPerRace = 0;
+    this->rank = 0;
+    this->timing = 0;
 }
 Driver::Driver(const char* _name,const char* _characteristics, const Car& _car)
 {
