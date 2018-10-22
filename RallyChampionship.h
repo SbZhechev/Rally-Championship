@@ -6,22 +6,34 @@ class RallyChampionship
 {
 private:
     char* name;
-    Rally ralies[3];
-    //MechanicsTeam teams[3] ----- to make
+    Rally* ralies;
+    size_t size;
+    size_t capacity;
+    MechanicsTeam* teams;
+    size_t teamSize;
+    size_t teamCapacity;
     void copy(const RallyChampionship& other);
     void destroy();
+    void resize();
+    void resizeTeam();
 public:
     RallyChampionship();
-    RallyChampionship(const char* _name, const Rally& _rally1, const Rally& _rally2, const Rally& _rally3);
     RallyChampionship(const RallyChampionship& other);
     RallyChampionship& operator=(const RallyChampionship& other);
     void print();
     void setName(const char* _name);
     size_t getSize() const;
+    size_t getCapacity() const;
+    size_t getTeamSize() const;
+    size_t getTeamCapacity() const;
     const char* getName() const;
     //void play();  ----- to make
-    //void calculateTime() ----- to make
+    double calculateTime(const Rally& _rally,const Driver& _driver);
     //void mechanicsTitle() ----- to make
-    void givePoints();
+    int givePoints(int _rank);
+    void setTimings();
+    void addTeams(const MechanicsTeam& _team);
+    void addRally(const Rally& _rally);
+    Rally& getRally(size_t position) const;
     ~RallyChampionship();
 };
